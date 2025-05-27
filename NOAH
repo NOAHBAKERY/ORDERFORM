@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOAH Bakery WhatsApp Order Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #fdf6f0;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem;
+      width: 100%;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1da851;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>NOAH Bakery Order Form</h1>
+
+  <form id="orderForm">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="phone">Your Phone Number:</label>
+    <input type="tel" id="phone" required>
+
+    <label for="product">Product:</label>
+    <select id="product" required>
+      <option value="">Select a product</option>
+      <option value="Croissant">Croissant</option>
+      <option value="Almond Croissant">Almond Croissant</option>
+      <option value="Pain au Chocolat">Pain au Chocolat</option>
+      <option value="Tropical Fruit Pastry">Tropical Fruit Pastry</option>
+      <option value="Custom Order">Custom Order</option>
+    </select>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" min="1" required>
+
+    <label for="date">Preferred Pickup/Delivery Date:</label>
+    <input type="date" id="date" required>
+
+    <label for="notes">Additional Notes:</label>
+    <textarea id="notes" rows="3"></textarea>
+
+    <button type="submit">Send Order via WhatsApp</button>
+  </form>
+
+  <script>
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const product = document.getElementById('product').value;
+      const quantity = document.getElementById('quantity').value;
+      const date = document.getElementById('date').value;
+      const notes = document.getElementById('notes').value;
+
+      const message = `Hello NOAH Bakery!%0A%0AI would like to place an order:%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A🥐 Product: ${product}%0A🔢 Quantity: ${quantity}%0A📅 Date: ${date}%0A📝 Notes: ${notes || '-'}`;
+
+      // Replace with your WhatsApp number in international format, e.g. 6281234567890 (no + or 0 at start)
+      const whatsappNumber = '6281392388922';
+      const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+      window.open(url, '_blank');
+    });
+  </script>
+
+</body>
+</html>
